@@ -29,8 +29,10 @@ struct ContentView: View {
     private var client = Convex(CONVEX_URL)
     private let dateFormatter: DateFormatter
 
-    @AppStorage("userId") private var userId: Int = Int.random(in: 1111 ... 9999)
+    @AppStorage("username") private var username = ""
     @State private var messages: [Message] = []
+    @State private var showUsernameAlert = false
+    @State private var newUsername = ""
 
     init() {
         dateFormatter = DateFormatter()
@@ -46,11 +48,16 @@ struct ContentView: View {
 
     func sendMessage(_ message: String) async {
         let args: ConvexValue = [
-            "author": .string("User \(userId)"),
+            "author": .string(username),
             "body": .string(message),
         ]
         let _ = try? await client.mutation("sendMessage", args)
         await listMessages()
+    }
+
+    func changeUsername() {
+        if newUsername.trimmingCharacters(in: .whitespaces).isEmpty { return }
+        username = newUsername
     }
 
     var body: some View {
@@ -75,16 +82,33 @@ struct ContentView: View {
                         await sendMessage(message)
                     }
                 }
-                .background(.ultraThinMaterial)
-                .background(.black)
+                .background(.ultraThickMaterial)
             }
-            .navigationTitle("User \(String(userId))")
+            .navigationTitle(username)
+            .toolbar {
+                Button {
+                    newUsername = username
+                    showUsernameAlert.toggle()
+                } label: {
+                    Image(systemName: "pencil")
+                }
+                .alert("Change username", isPresented: $showUsernameAlert) {
+                    TextField("Enter your username", text: $newUsername)
+                    Button("Change", action: changeUsername)
+                }
+            }
         }
         .task {
             await listMessages()
         }
         .onTapGesture {
             hideKeyboard()
+        }
+        .onAppear {
+            if username == "" {
+                let userId = Int.random(in: 1111 ... 9999)
+                username = "User \(userId)"
+            }
         }
     }
 }
@@ -114,7 +138,7 @@ struct CustomTextField: View {
             }
             .padding(.vertical, 8)
             .padding(.horizontal, 12)
-            .background(.white)
+            .background(.background)
             .cornerRadius(10)
 
             Button {
