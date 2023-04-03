@@ -21,6 +21,7 @@
 		2A40BC4729DADBCF0051AD90 /* ConvexChatApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ConvexChatApp.entitlements; sourceTree = "<group>"; };
 		2A40BC4929DADBCF0051AD90 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2A40BC5129DADC350051AD90 /* convex-swift */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "convex-swift"; path = "../convex-swift"; sourceTree = "<group>"; };
+		2A40BC5329DADD720051AD90 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +38,7 @@
 		2A40BC3529DADBCE0051AD90 = {
 			isa = PBXGroup;
 			children = (
+				2A40BC5329DADD720051AD90 /* README.md */,
 				2A40BC4029DADBCE0051AD90 /* ConvexChatApp */,
 				2A40BC5029DADC350051AD90 /* Packages */,
 				2A40BC3F29DADBCE0051AD90 /* Products */,
