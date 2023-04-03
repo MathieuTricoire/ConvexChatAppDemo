@@ -5,6 +5,7 @@
 //  Created by Mathieu Tricoire on 2023-04-03.
 //
 
+import Convex
 import SwiftUI
 
 @main
