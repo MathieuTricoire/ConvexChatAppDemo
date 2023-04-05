@@ -12,7 +12,7 @@
 		2A40BC4629DADBCF0051AD90 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A40BC4529DADBCF0051AD90 /* Assets.xcassets */; };
 		2A40BC4A29DADBCF0051AD90 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A40BC4929DADBCF0051AD90 /* Preview Assets.xcassets */; };
 		2A40BC5529DAE0AF0051AD90 /* Secret.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A40BC5429DAE0AF0051AD90 /* Secret.plist */; };
-		2A40BC5829DAE2B40051AD90 /* Convex in Frameworks */ = {isa = PBXBuildFile; productRef = 2A40BC5729DAE2B40051AD90 /* Convex */; };
+		2A935D9F29DDC5E0004940B8 /* Convex in Frameworks */ = {isa = PBXBuildFile; productRef = 2A935D9E29DDC5E0004940B8 /* Convex */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,7 +22,6 @@
 		2A40BC4529DADBCF0051AD90 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2A40BC4729DADBCF0051AD90 /* ConvexChatApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ConvexChatApp.entitlements; sourceTree = "<group>"; };
 		2A40BC4929DADBCF0051AD90 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		2A40BC5129DADC350051AD90 /* convex-swift */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "convex-swift"; path = "../convex-swift"; sourceTree = "<group>"; };
 		2A40BC5329DADD720051AD90 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		2A40BC5429DAE0AF0051AD90 /* Secret.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Secret.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -32,7 +31,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2A40BC5829DAE2B40051AD90 /* Convex in Frameworks */,
+				2A935D9F29DDC5E0004940B8 /* Convex in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,7 +43,6 @@
 			children = (
 				2A40BC5329DADD720051AD90 /* README.md */,
 				2A40BC4029DADBCE0051AD90 /* ConvexChatApp */,
-				2A40BC5029DADC350051AD90 /* Packages */,
 				2A40BC3F29DADBCE0051AD90 /* Products */,
 				2A40BC5629DAE2B40051AD90 /* Frameworks */,
 			);
@@ -79,14 +77,6 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		2A40BC5029DADC350051AD90 /* Packages */ = {
-			isa = PBXGroup;
-			children = (
-				2A40BC5129DADC350051AD90 /* convex-swift */,
-			);
-			name = Packages;
-			sourceTree = "<group>";
-		};
 		2A40BC5629DAE2B40051AD90 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -111,7 +101,7 @@
 			);
 			name = ConvexChatApp;
 			packageProductDependencies = (
-				2A40BC5729DAE2B40051AD90 /* Convex */,
+				2A935D9E29DDC5E0004940B8 /* Convex */,
 			);
 			productName = ConvexChatApp;
 			productReference = 2A40BC3E29DADBCE0051AD90 /* ConvexChatApp.app */;
@@ -141,6 +131,9 @@
 				Base,
 			);
 			mainGroup = 2A40BC3529DADBCE0051AD90;
+			packageReferences = (
+				2A935D9D29DDC5E0004940B8 /* XCRemoteSwiftPackageReference "SwiftConvex" */,
+			);
 			productRefGroup = 2A40BC3F29DADBCE0051AD90 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -294,6 +287,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ConvexChatApp/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -332,6 +326,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ConvexChatApp/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -384,9 +379,21 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		2A935D9D29DDC5E0004940B8 /* XCRemoteSwiftPackageReference "SwiftConvex" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MathieuTricoire/SwiftConvex.git";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 0.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
-		2A40BC5729DAE2B40051AD90 /* Convex */ = {
+		2A935D9E29DDC5E0004940B8 /* Convex */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = 2A935D9D29DDC5E0004940B8 /* XCRemoteSwiftPackageReference "SwiftConvex" */;
 			productName = Convex;
 		};
 /* End XCSwiftPackageProductDependency section */
