@@ -13,16 +13,12 @@ let secret = NSDictionary(contentsOfFile: path)!
 let CONVEX_URL_STRING = secret["CONVEX_URL"] as! String
 let CONVEX_URL = URL(string: CONVEX_URL_STRING)!
 
-struct Message: Identifiable, Codable, Equatable {
+struct Message: ConvexIdentifiable, Codable, Equatable {
     let _id: ConvexId
     @ConvexCreationTime
     var _creationTime: Date
     let author: String
     let body: String
-
-    var id: ConvexId {
-        _id
-    }
 }
 
 struct ContentView: View {
@@ -51,7 +47,7 @@ struct ContentView: View {
             "author": .string(username),
             "body": .string(message),
         ]
-        let _ = try? await client.mutation("sendMessage", args)
+        _ = try? await client.mutation("sendMessage", args)
         await listMessages()
     }
 
