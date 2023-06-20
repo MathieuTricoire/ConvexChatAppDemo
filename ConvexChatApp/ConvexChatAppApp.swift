@@ -8,11 +8,28 @@
 import Convex
 import SwiftUI
 
+ let path = Bundle.main.path(forResource: "Secret", ofType: "plist")!
+ let secret = NSDictionary(contentsOfFile: path)!
+ let CONVEX_URL = secret["CONVEX_URL"] as! String
+
+extension ConvexQueries {
+    var listMessages: ConvexQueryDescription {
+        ConvexQueryDescription(path: "listMessages")
+    }
+}
+
 @main
+@MainActor
 struct ConvexChatAppApp: App {
+    private var client = Client(deploymentUrl: CONVEX_URL)
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MessagesView()
+                .convexClient(client)
+                .task {
+                    await client.connect()
+                }
         }
     }
 }

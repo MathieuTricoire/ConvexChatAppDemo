@@ -1,12 +1,12 @@
 {
   "pins" : [
     {
-      "identity" : "swiftconvex",
+      "identity" : "convex-swift",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/MathieuTricoire/SwiftConvex.git",
+      "location" : "https://github.com/MathieuTricoire/convex-swift",
       "state" : {
-        "revision" : "4d65c68bc19a6f1c0225e0821c8cfa84d23a85b1",
-        "version" : "0.0.1"
+        "revision" : "78c30e39ef080c805c6d8dc24eceedcc1245e958",
+        "version" : "0.0.2"
       }
     }
   ],

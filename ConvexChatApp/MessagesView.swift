@@ -1,54 +1,35 @@
 //
-//  ContentView.swift
+//  MessagesView.swift
 //  ConvexChatApp
 //
-//  Created by Mathieu Tricoire on 2023-04-03.
+//  Created by Mathieu Tricoire on 2023-05-03.
 //
 
 import Convex
 import SwiftUI
 
-let path = Bundle.main.path(forResource: "Secret", ofType: "plist")!
-let secret = NSDictionary(contentsOfFile: path)!
-let CONVEX_URL_STRING = secret["CONVEX_URL"] as! String
-let CONVEX_URL = URL(string: CONVEX_URL_STRING)!
-
-struct Message: ConvexIdentifiable, Codable, Equatable {
-    let _id: ConvexId
-    @ConvexCreationTime
-    var _creationTime: Date
-    let author: String
-    let body: String
-}
-
-struct ContentView: View {
-    private var client = Convex(CONVEX_URL)
-    private let dateFormatter: DateFormatter
+struct MessagesView: View {
+    @Environment(\.convexClient) private var client
 
     @AppStorage("username") private var username = ""
-    @State private var messages: [Message] = []
+
+    @ConvexQuery(\.listMessages) private var messages
+
+    @State private var showingSheet = false
     @State private var showUsernameAlert = false
     @State private var newUsername = ""
 
-    init() {
-        dateFormatter = DateFormatter()
+    private let dateFormatter = {
+        let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .long
         dateFormatter.timeStyle = .short
-    }
+        return dateFormatter
+    }()
 
-    func listMessages() async {
-        if let messages: [Message] = try? await client.query("listMessages") {
-            self.messages = messages
+    func sendMessage(_ body: String) {
+        Task {
+            try? await client?.mutation(path: "sendMessage", args: ["author": .string(value: username), "body": .string(value:  body)])
         }
-    }
-
-    func sendMessage(_ message: String) async {
-        let args: ConvexValue = [
-            "author": .string(username),
-            "body": .string(message),
-        ]
-        _ = try? await client.mutation("sendMessage", args)
-        await listMessages()
     }
 
     func changeUsername() {
@@ -59,28 +40,35 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             VStack(spacing: 0) {
-                List {
-                    ForEach(messages.reversed()) { message in
-                        VStack(alignment: .leading) {
-                            Text("**\(message.author)**: \(message.body)")
-                            Text(message._creationTime, formatter: dateFormatter)
-                                .font(.caption)
-                                .foregroundColor(Color.gray)
+                if case let .array(messages) = messages {
+                    List {
+                        ForEach(messages, id: \.[dynamicMember: "_id"]) { message in
+                            VStack(alignment: .leading) {
+                                Text("**\(message.author?.description ?? "")**: \(message.body?.description ?? "")")
+                                if case let .some(.float(creationTime)) = message._creationTime {
+                                    Text(Date(timeIntervalSince1970: creationTime / 1000), formatter: dateFormatter)
+                                        .font(.caption)
+                                        .foregroundColor(Color.gray)
+                                }
+                            }
+                            .listRowSeparator(.hidden)
                         }
                     }
-                }
-                .animation(.easeIn, value: messages)
-                .refreshable {
-                    await listMessages()
-                }
-                CustomTextField { message in
-                    Task {
-                        await sendMessage(message)
+                    .listStyle(.plain)
+                    .animation(.easeIn, value: messages)
+                } else {
+                    VStack {
+                        Spacer()
+                        Text("~ no messages ~")
+                        Spacer()
                     }
+                }
+
+                CustomTextField { message in
+                    sendMessage(message)
                 }
                 .background(.ultraThickMaterial)
             }
-            .navigationTitle(username)
             .toolbar {
                 Button {
                     newUsername = username
@@ -90,28 +78,25 @@ struct ContentView: View {
                 }
                 .alert("Change username", isPresented: $showUsernameAlert) {
                     TextField("Enter your username", text: $newUsername)
-                    Button("Change", action: changeUsername)
+                    Button("Change", action: { changeUsername() })
                 }
             }
-        }
-        .task {
-            await listMessages()
-        }
-        .onTapGesture {
-            hideKeyboard()
-        }
-        .onAppear {
-            if username == "" {
-                let userId = Int.random(in: 1111 ... 9999)
-                username = "User \(userId)"
+            .onTapGesture {
+                hideKeyboard()
+            }
+            .onAppear {
+                if username == "" {
+                    let userId = Int.random(in: 1111 ... 9999)
+                    username = "User \(userId)"
+                }
             }
         }
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct MessagesView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        MessagesView()
     }
 }
 
@@ -168,6 +153,7 @@ extension View {
         }
     }
 
+    @MainActor
     func hideKeyboard() {
         let resign = #selector(UIResponder.resignFirstResponder)
         UIApplication.shared.sendAction(resign, to: nil, from: nil, for: nil)

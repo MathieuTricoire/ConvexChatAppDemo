@@ -8,22 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		2A40BC4229DADBCE0051AD90 /* ConvexChatAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A40BC4129DADBCE0051AD90 /* ConvexChatAppApp.swift */; };
-		2A40BC4429DADBCE0051AD90 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A40BC4329DADBCE0051AD90 /* ContentView.swift */; };
 		2A40BC4629DADBCF0051AD90 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A40BC4529DADBCF0051AD90 /* Assets.xcassets */; };
 		2A40BC4A29DADBCF0051AD90 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A40BC4929DADBCF0051AD90 /* Preview Assets.xcassets */; };
 		2A40BC5529DAE0AF0051AD90 /* Secret.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A40BC5429DAE0AF0051AD90 /* Secret.plist */; };
-		2A935D9F29DDC5E0004940B8 /* Convex in Frameworks */ = {isa = PBXBuildFile; productRef = 2A935D9E29DDC5E0004940B8 /* Convex */; };
+		2A6634542A023A1700442B8A /* MessagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6634532A023A1700442B8A /* MessagesView.swift */; };
+		2AB355792A421DED00D1FF2C /* Convex in Frameworks */ = {isa = PBXBuildFile; productRef = 2AB355782A421DED00D1FF2C /* Convex */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2A40BC3E29DADBCE0051AD90 /* ConvexChatApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ConvexChatApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A40BC4129DADBCE0051AD90 /* ConvexChatAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvexChatAppApp.swift; sourceTree = "<group>"; };
-		2A40BC4329DADBCE0051AD90 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2A40BC4529DADBCF0051AD90 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2A40BC4729DADBCF0051AD90 /* ConvexChatApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ConvexChatApp.entitlements; sourceTree = "<group>"; };
 		2A40BC4929DADBCF0051AD90 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2A40BC5329DADD720051AD90 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		2A40BC5429DAE0AF0051AD90 /* Secret.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Secret.plist; sourceTree = "<group>"; };
+		2A6634532A023A1700442B8A /* MessagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,7 +31,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2A935D9F29DDC5E0004940B8 /* Convex in Frameworks */,
+				2AB355792A421DED00D1FF2C /* Convex in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,7 +60,7 @@
 			isa = PBXGroup;
 			children = (
 				2A40BC4129DADBCE0051AD90 /* ConvexChatAppApp.swift */,
-				2A40BC4329DADBCE0051AD90 /* ContentView.swift */,
+				2A6634532A023A1700442B8A /* MessagesView.swift */,
 				2A40BC4529DADBCF0051AD90 /* Assets.xcassets */,
 				2A40BC4729DADBCF0051AD90 /* ConvexChatApp.entitlements */,
 				2A40BC4829DADBCF0051AD90 /* Preview Content */,
@@ -101,7 +101,7 @@
 			);
 			name = ConvexChatApp;
 			packageProductDependencies = (
-				2A935D9E29DDC5E0004940B8 /* Convex */,
+				2AB355782A421DED00D1FF2C /* Convex */,
 			);
 			productName = ConvexChatApp;
 			productReference = 2A40BC3E29DADBCE0051AD90 /* ConvexChatApp.app */;
@@ -132,7 +132,7 @@
 			);
 			mainGroup = 2A40BC3529DADBCE0051AD90;
 			packageReferences = (
-				2A935D9D29DDC5E0004940B8 /* XCRemoteSwiftPackageReference "SwiftConvex" */,
+				2AB355772A421DED00D1FF2C /* XCRemoteSwiftPackageReference "convex-swift" */,
 			);
 			productRefGroup = 2A40BC3F29DADBCE0051AD90 /* Products */;
 			projectDirPath = "";
@@ -161,7 +161,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2A40BC4429DADBCE0051AD90 /* ContentView.swift in Sources */,
+				2A6634542A023A1700442B8A /* MessagesView.swift in Sources */,
 				2A40BC4229DADBCE0051AD90 /* ConvexChatAppApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -312,6 +312,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -351,6 +352,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -380,20 +382,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		2A935D9D29DDC5E0004940B8 /* XCRemoteSwiftPackageReference "SwiftConvex" */ = {
+		2AB355772A421DED00D1FF2C /* XCRemoteSwiftPackageReference "convex-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/MathieuTricoire/SwiftConvex.git";
+			repositoryURL = "https://github.com/MathieuTricoire/convex-swift";
 			requirement = {
 				kind = upToNextMinorVersion;
-				minimumVersion = 0.0.1;
+				minimumVersion = 0.0.2;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		2A935D9E29DDC5E0004940B8 /* Convex */ = {
+		2AB355782A421DED00D1FF2C /* Convex */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2A935D9D29DDC5E0004940B8 /* XCRemoteSwiftPackageReference "SwiftConvex" */;
+			package = 2AB355772A421DED00D1FF2C /* XCRemoteSwiftPackageReference "convex-swift" */;
 			productName = Convex;
 		};
 /* End XCSwiftPackageProductDependency section */
